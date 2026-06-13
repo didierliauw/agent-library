@@ -13,11 +13,16 @@ skills, installable on multiple AI coding agents. Currently ships:
 ### Claude Code (native plugin marketplace)
 
 ```
-/plugin marketplace add didierliauw/agent-library
+/plugin marketplace add https://github.com/didierliauw/agent-library
 /plugin install agent-library
 ```
 
 Then use `/scriptify` in any project.
+
+> Use the full HTTPS URL as shown. The `didierliauw/agent-library` shorthand
+> also works, but Claude Code resolves it over SSH, which fails with a host-key
+> error if you don't have SSH access to GitHub set up. The HTTPS URL needs no
+> SSH configuration.
 
 ### GitHub Copilot CLI (native plugin marketplace)
 
@@ -29,7 +34,10 @@ copilot plugin install agent-library
 > **Note:** The Copilot install flow above follows GitHub's documented plugin
 > marketplace commands but has not been run end-to-end by the author (no
 > Copilot CLI on the authoring machine). If a command differs in your version,
-> see `copilot plugin --help`. Please open an issue if you hit a mismatch.
+> see `copilot plugin --help`. If the shorthand errors with an SSH host-key
+> message, use the full URL instead:
+> `copilot plugin marketplace add https://github.com/didierliauw/agent-library`.
+> Please open an issue if you hit a mismatch.
 
 ### Codex, Gemini, Cursor (installer script)
 
@@ -57,7 +65,7 @@ cd agent-library
 - `.claude-plugin/`, `plugin.json` + `.github/plugin/`, `.cursor-plugin/` — per-host manifests, all pointing at `skills/`
 - `install.sh` — symlink installer for non-marketplace hosts
 - `evals/` — dev-only test suites for the skills (not shipped to users)
-- `docs/superpowers/` — design specs and implementation plans
+- `docs/design/` — design docs (architecture decisions)
 
 ## License
 

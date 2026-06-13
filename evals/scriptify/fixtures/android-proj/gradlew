@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+# Fixture stub standing in for the real Gradle wrapper: prints realistic
+# noisy output so wrapper scripts created during evals can be verified.
+for i in $(seq 1 30); do echo "> Task :app:someTask$i UP-TO-DATE"; done
+echo "BUILD SUCCESSFUL in 4s"
+echo "45 actionable tasks: 45 up-to-date"

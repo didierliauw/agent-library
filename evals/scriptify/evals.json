@@ -1,0 +1,51 @@
+{
+  "skill_name": "scriptify",
+  "evals": [
+    {
+      "id": 0,
+      "name": "gradle-noise-hangs-prompts",
+      "prompt": "I'm wrapping up a coding session in this Android project (the current directory). Here's a condensed log of what happened this session:\n\n- Ran `./gradlew test` 6 times. Every successful run printed ~350 lines of task-by-task output; each time you ended up running it again piped through `tail -3` or grepping for 'BUILD' to see the result. One run also executed the release-variant tests pointlessly (testDebugUnitTest would have sufficed).\n- One `./gradlew assembleDebug` invocation hung for 40+ minutes until I hit ctrl+c; there was no timeout on it.\n- You ran `~/Library/Android/sdk/platform-tools/adb logcat -s SnoreDetect` 4 times, and I had to click a permission prompt for adb every single time because adb isn't on the allowlist.\n- Twice you forgot adb isn't on PATH and ran bare `adb devices` which failed, then corrected to the full path.\n\nAnalyse this session for improvements you could capture as scripts. Propose first, then — consider all your proposals pre-approved by me — implement them: create the scripts, add them to the allowed tools, and update the docs. Verify what you create.",
+      "expected_output": "Proposals with session evidence, then: a quiet bounded test-runner script and an adb wrapper script (or similar) created in scripts/, executable, verified by running them; permissions.allow in .claude/settings.json extended with Bash(scripts/...*) entries WITHOUT clobbering existing keys; CLAUDE.md commands section updated.",
+      "files": ["fixtures/android-proj"],
+      "assertions": [
+        "Proposals cite concrete session evidence (command names and occurrence counts) and appear before any implementation",
+        "A test-runner wrapper script exists under scripts/, is executable, and is quiet on success: running it against the stub gradlew prints at most ~6 lines",
+        "The wrapper enforces a bounded timeout on gradle invocations (timeout command or equivalent guard visible in the script)",
+        "The wrapper runs testDebugUnitTest rather than the wasteful bare test task",
+        ".claude/settings.json was merged, not clobbered: pre-existing entry Bash(./gradlew *) AND the enableAllProjectMcpServers key both survive, and new Bash(scripts/...) allow entries were added",
+        "The adb friction is addressed: a wrapper or allowlist rule that bakes in the full ~/Library/Android/sdk/platform-tools/adb path",
+        "CLAUDE.md commands section documents the new script(s)",
+        "Every created script was actually executed once as verification, with its output shown or summarized in the report"
+      ]
+    },
+    {
+      "id": 1,
+      "name": "curl-jq-repetition-extend-existing",
+      "prompt": "End of session in this web-service project (current directory). Session recap:\n\n- You checked the API after every change — at least 8 times — always the same dance: `export PATH=\"/opt/homebrew/bin:$PATH\"` (because jq lives in /opt/homebrew/bin and the first attempt without it failed with 'jq: command not found'), then `curl -s localhost:8080/api/sessions | jq '.[0]'`, then `curl -s localhost:8080/api/health | jq .status`. I clicked a permission prompt for nearly every curl variation.\n- Three times you ran `docker compose up -d` when Postgres was already running on :5432; once docker was wedged and the command hung for 15 minutes. The check 'is the port already up' was discussed but lives nowhere.\n- Note there is already a scripts/restart.sh in this repo — don't reinvent what it covers.\n\nWhat could we script here? Propose improvements, then treat everything you proposed as approved and apply it (scripts + allowlist + docs). Verify what you create.",
+      "expected_output": "An API-check wrapper script handling PATH + both endpoints quietly; the port-check-before-docker either added INTO scripts/restart.sh (extending, not duplicating) or as a guard script, plus/or a CLAUDE.md note for the process rule; allowlist entries added preserving existing settings.json content; restart.sh not duplicated.",
+      "files": ["fixtures/web-proj"],
+      "assertions": [
+        "Proposals cite concrete session evidence (command names and occurrence counts) and appear before any implementation",
+        "An API-check script exists under scripts/, is executable, handles the /opt/homebrew/bin PATH export internally, and covers both the sessions and health endpoints",
+        "The existing scripts/restart.sh is respected: it is either extended in place or left alone, and no new script re-implements what it covers",
+        "The port-check-before-docker rule is captured durably: as a guard in a script (nc/lsof port 5432 check before docker compose) and/or as a CLAUDE.md note, with any docker invocation bounded by a timeout",
+        ".claude/settings.json was merged, not clobbered: pre-existing entries Bash(scripts/restart.sh *), Bash(git status) and the env.SERVICE_PORT key all survive, and new Bash(scripts/...) entries were added",
+        "CLAUDE.md documents the new script(s)",
+        "Created scripts were executed as verification; if the API isn't reachable the report says so honestly rather than claiming success"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "no-friction-restraint",
+      "prompt": "Quick question about this project (current directory). This session was short — recap:\n\n- You read three source files, explained how the auth middleware works.\n- Ran `git log --oneline -5` once.\n- Ran `npm test` once; it passed, output was 12 lines.\n- Renamed one variable and committed.\n\nAnything here worth turning into scripts or allowlist entries? If yes do it (pre-approved), if not say so.",
+      "expected_output": "The skill should conclude there is no recurring friction worth scripting and write NOTHING — no scripts/ files created, settings.json untouched. A clear 'no recurring friction' answer is the pass condition.",
+      "files": ["fixtures/node-proj"],
+      "assertions": [
+        "The answer explicitly concludes there is no recurring friction worth scripting",
+        "No scripts were created: the project contains no scripts/ directory and no new executable files (only PROPOSALS.md may be new)",
+        ".claude/settings.json is unchanged from the fixture (same single Bash(npm test) allow entry, no additions)",
+        "CLAUDE.md is unchanged"
+      ]
+    }
+  ]
+}

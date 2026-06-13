@@ -1,0 +1,22 @@
+[
+  { "query": "/scriptify", "should_trigger": true },
+  { "query": "what could we script here?", "should_trigger": true },
+  { "query": "can you reduce the permission prompts in this project?", "should_trigger": true },
+  { "query": "I keep approving the same gradle command over and over, can we fix that?", "should_trigger": true },
+  { "query": "that build output is super noisy, can we quiet it down for future runs?", "should_trigger": true },
+  { "query": "before we wrap up, is there anything from this session worth automating?", "should_trigger": true },
+  { "query": "the docker command keeps hanging every time we run it — make our setup more robust", "should_trigger": true },
+  { "query": "we ran that same curl + jq check like eight times, turn it into something reusable", "should_trigger": true },
+  { "query": "these build commands are burning a ton of tokens, how can we cut that down?", "should_trigger": true },
+  { "query": "looking back at this session, how could the workflow be improved next time?", "should_trigger": true },
+  { "query": "speed up our dev loop based on what we just did", "should_trigger": true },
+  { "query": "write a python script that parses this CSV and prints the totals", "should_trigger": false },
+  { "query": "add an npm script to package.json for running the tests", "should_trigger": false },
+  { "query": "explain what this bash script does", "should_trigger": false },
+  { "query": "run the deploy script and tell me if it works", "should_trigger": false },
+  { "query": "create a shell script to back up my photos folder every night", "should_trigger": false },
+  { "query": "the app crashes on startup, can you debug it?", "should_trigger": false },
+  { "query": "fix the failing unit test in EpisodeDetectorTest", "should_trigger": false },
+  { "query": "what's the best way to structure a React project?", "should_trigger": false },
+  { "query": "make this SQL query faster", "should_trigger": false }
+]

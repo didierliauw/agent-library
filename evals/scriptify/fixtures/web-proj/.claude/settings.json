@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(scripts/restart.sh *)",
+      "Bash(git status)"
+    ]
+  },
+  "env": {
+    "SERVICE_PORT": "8080"
+  }
+}

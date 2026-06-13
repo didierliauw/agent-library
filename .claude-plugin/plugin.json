@@ -1,0 +1,13 @@
+{
+  "name": "agent-library",
+  "description": "Didier Liauw's cross-platform agent customizations. Includes scriptify: turn session friction (repeated commands, noisy output, permission prompts, hangs) into project scripts and permission allowlist entries.",
+  "version": "1.0.0",
+  "author": {
+    "name": "Didier Liauw",
+    "email": "4746056+didierliauw@users.noreply.github.com"
+  },
+  "homepage": "https://github.com/didierliauw/agent-library",
+  "repository": "https://github.com/didierliauw/agent-library",
+  "license": "MIT",
+  "keywords": ["skills", "automation", "scripts", "permissions", "workflow", "scriptify"]
+}

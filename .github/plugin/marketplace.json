@@ -1,0 +1,20 @@
+{
+  "name": "agent-library",
+  "metadata": {
+    "description": "Cross-platform agent customizations: skills (and later agents, hooks, MCP configs).",
+    "version": "1.0.0"
+  },
+  "owner": {
+    "name": "Didier Liauw",
+    "email": "4746056+didierliauw@users.noreply.github.com"
+  },
+  "plugins": [
+    {
+      "name": "agent-library",
+      "description": "Includes scriptify: turn session friction into project scripts and permission allowlist entries.",
+      "version": "1.0.0",
+      "license": "MIT",
+      "source": "."
+    }
+  ]
+}

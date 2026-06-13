@@ -1,0 +1,15 @@
+{
+  "name": "agent-library",
+  "metadata": {
+    "description": "Cross-platform agent customizations: skills (and later agents, hooks, MCP configs)."
+  },
+  "owner": {
+    "name": "Didier Liauw"
+  },
+  "plugins": [
+    {
+      "name": "agent-library",
+      "source": "."
+    }
+  ]
+}

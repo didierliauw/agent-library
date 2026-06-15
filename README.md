@@ -28,7 +28,7 @@ Then use `/scriptify` in any project.
 
 ```
 copilot plugin marketplace add didierliauw/agent-library
-copilot plugin install agent-library
+copilot plugin install agent-library@agent-library
 ```
 
 > **Note:** The Copilot install flow above follows GitHub's documented plugin
